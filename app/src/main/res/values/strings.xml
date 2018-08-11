@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WanAndroid</string>
+
+    <string name="homepage">Homepage</string>
+    <string name="knowledge_system">knowledge_system</string>
+    <string name="guide">guide</string>
+    <string name="project">project</string>
+</resources>
