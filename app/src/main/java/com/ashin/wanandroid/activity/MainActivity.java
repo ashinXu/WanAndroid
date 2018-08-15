@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ashin.wanandroid.BaseActivity;
@@ -28,21 +27,20 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.draw_layout)
-    DrawerLayout drawerLayout;
-    @BindView(R.id.bottom_view)
-    BottomNavigationView bottomView;
+    @BindView(R.id.bottom_navigation_view)
+    BottomNavigationView bottomNavigationView;
     @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.fragment_container)
-    FrameLayout flContainer;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
 
     private ActionBarDrawerToggle mDrawerToggle;
     private List<BaseFragment> fragmentList = new ArrayList<>();
-    private int lastIndex;
+    private int lastIndex = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +56,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+
         tvTitle.setText(getString(R.string.homepage));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -73,7 +72,7 @@ public class MainActivity extends BaseActivity {
         mDrawerToggle.syncState();
         drawerLayout.setDrawerListener(mDrawerToggle);
 
-        bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
@@ -93,6 +92,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
+
     }
 
     private void initFragment() {
@@ -105,7 +105,8 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(guideFragment);
         fragmentList.add(projectFragment);
         lastIndex = 0;
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_group, homeFragment).commit();
+
 
     }
 
@@ -116,7 +117,7 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.hide(lastFragment);
         if (!targetFragment.isAdded()) {
-            ft.add(R.id.fragment_container, targetFragment);
+            ft.add(R.id.fragment_group, targetFragment);
         }
         ft.show(targetFragment).commit();
     }

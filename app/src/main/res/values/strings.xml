@@ -5,4 +5,9 @@
     <string name="knowledge_system">knowledge_system</string>
     <string name="guide">guide</string>
     <string name="project">project</string>
+
+    <string name="my_collect">my_collect</string>
+    <string name="setting">setting</string>
+    <string name="about_us">about_us</string>
+    <string name="logout">logout</string>
 </resources>

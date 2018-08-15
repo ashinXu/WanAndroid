@@ -2,8 +2,8 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:id="@+id/draw_layout"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
@@ -18,34 +18,29 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <include layout="@layout/common_toolbar" />
-
         </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/fragment_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
 
         <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
-            android:id="@+id/bottom_view"
+            android:layout_height="wrap_content"
+            app:elevation="@dimen/dp_16"
             android:layout_gravity="bottom"
-            android:fitsSystemWindows="true"
-            app:menu="@menu/bottom_navigation_main"
-            android:layout_height="wrap_content"/>
-
-
+            app:menu="@menu/bottom_navigation_main" />
     </android.support.design.widget.CoordinatorLayout>
 
-
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_layout"
-        app:menu="@menu/bottom_navigation_main" />
-
-
+        android:fitsSystemWindows="true"
+        app:menu="@menu/nav_menu" />
 </android.support.v4.widget.DrawerLayout>
