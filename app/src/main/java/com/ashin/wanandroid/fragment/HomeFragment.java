@@ -22,6 +22,7 @@ import com.ashin.wanandroid.network.BaseResult;
 import com.ashin.wanandroid.network.RetrofitHelper;
 import com.ashin.wanandroid.utils.GlideImageLoader;
 import com.ashin.wanandroid.utils.RxUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -147,6 +148,13 @@ public class HomeFragment extends BaseFragment {
         homeAdapter = new HomeAdapter(R.layout.item_article_layout, articles);
         recyclerView.setAdapter(homeAdapter);
         homeAdapter.addHeaderView(bannerView);
+
+        homeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.v(Const.LOG_TAG,"position = "+position);
+            }
+        });
 
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
